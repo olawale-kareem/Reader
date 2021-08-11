@@ -21,6 +21,12 @@ class TestUser(unittest.TestCase):
         response = self.operation.create_record('Buff', 'Bif', '632-79-9939', 46.0, 20.0, 30.0, 40.0, 50.0, 'B+')
         self.assertEqual(response, 'Record Successfully Created')
 
+    def test_read_all_records(self):
+        response = self.operation.read_all_records()
+        total_records = 16
+        result = len(response)
+        self.assertEqual(result, total_records)
+
 
 
 

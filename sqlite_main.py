@@ -52,3 +52,17 @@ class SqlDb:
         conn.commit()
         print('Record Successfully Created')
         return 'Record Successfully Created'
+
+    def read_all_records(self):
+        conn, cur = self.connection()
+        sql_read_query = 'SELECT * FROM grades'
+        cur.execute(sql_read_query)
+        records = cur.fetchall()
+        print('Students records: ')
+        for record in records:
+            print(record)
+        return records
+
+
+
+
