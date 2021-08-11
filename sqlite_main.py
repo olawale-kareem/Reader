@@ -72,6 +72,16 @@ class SqlDb:
         print(records)
         return records
 
+    def update_record(self, id, *args):
+        conn, cur = self.connection()
+        db_insert = f'''UPDATE grades SET
+        ( SSN,Test1,Test2,Test3,Test4,Final,Grade) = {args} WHERE SSN = {id}'''
+        cur.execute(db_insert)
+        conn.commit()
+        print("Record updated successfully in users table")
+        return "Record updated successfully in users table"
+
+
 
 
 
