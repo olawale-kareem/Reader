@@ -62,6 +62,28 @@ class TestBooks(unittest.TestCase):
         self.assertIsInstance(response_1, tuple)
         self.assertIsInstance(response_2, tuple)
 
+    def test_destroy(self):
+        total_record = 10
+        id = 10
+        self.book.destroy(id)
+        self.connect.commit()
+        response = self.book.display_table_content()
+        result = len(response)
+        self.assertEqual(result, total_record - 1)
+
+    def destroy(self, id):
+        print('Books table before deleting record')
+        self.display_table_content()
+
+        print('Table after deleting record:')
+        delete_query = f'DELETE FROM books WHERE id = {id}'
+        self.cursor.execute(delete_query)
+        self.connection.commit()
+        count = self.cursor.rowcount
+
+        self.display_table_content()
+        print(count, "Record deleted successfully in books table")
+
     def tearDown(self):
         user = Book()
         self.close = user.close_db_connections()
