@@ -62,6 +62,18 @@ class TestUser(unittest.TestCase):
         self.assertEqual(len(response_1), len(response_2))
         self.assertIsInstance(response_1, tuple)
 
+    def test_delete(self):
+        total_record = 10
+        id = 10
+        self.user.delete(id)
+        self.connect.commit()
+        response = self.user.display_table_content()
+        result = len(response)
+        self.assertEqual(result, total_record - 1)
+
+    def tearDown(self):
+        user = User()
+        self.close = user.close_db_connections()
 
 if __name__ == '__main__':
     unittest.main()
