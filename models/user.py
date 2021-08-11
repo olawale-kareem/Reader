@@ -77,3 +77,5 @@ class User:
 
         self.display_table_content()
         print(count, "Record created successfully in users table")
+
+
