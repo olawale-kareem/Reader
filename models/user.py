@@ -78,4 +78,15 @@ class User:
         self.display_table_content()
         print(count, "Record created successfully in users table")
 
+    def update(self, id, *args):
+        print('Table before updating record')
+        print(self.get(id))
+        print('Table after updating record')
+        db_insert = f'''UPDATE users SET
+        (id, first_name, last_name, created_at, updated_at) = {args} WHERE id = {id}'''
+        self.cursor.execute(db_insert)
+        self.connection.commit()
+        count = self.cursor.rowcount
+        print(self.get(id))
+        print(count, "Record updated successfully in users table")
 
