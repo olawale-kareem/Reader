@@ -1,6 +1,6 @@
 import unittest
 import psycopg2
-from models.books import Book
+from models.book import Book
 
 
 class TestBooks(unittest.TestCase):
