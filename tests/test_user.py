@@ -54,6 +54,14 @@ class TestUser(unittest.TestCase):
         result = len(response)
         self.assertEqual(result, total_record + 1)
 
+    def test_update(self):
+        id = 6
+        response_1 = self.user.get(id)
+        self.user.update(6, 'Charissa', 'Crighton', '2020/8/13', '2021/2/14')
+        response_2 = self.user.get(id)
+        self.assertEqual(len(response_1), len(response_2))
+        self.assertIsInstance(response_1, tuple)
+
 
 if __name__ == '__main__':
     unittest.main()
