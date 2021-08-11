@@ -91,7 +91,15 @@ class SqlDb:
             print(record)
         return records
 
-
+    def final_50_below(self):
+        conn, cur = self.connection()
+        sql_read_query = f"SELECT * FROM grades WHERE Final < 50"
+        cur.execute(sql_read_query)
+        records = cur.fetchall()
+        print(f'Student records below 50:')
+        for record in records:
+            print(record)
+        return records
 
 
 

@@ -46,6 +46,13 @@ class TestUser(unittest.TestCase):
         result = len(response)
         self.assertEqual(result, total_records_50_and_above)
 
+    def test_final_50_below(self):
+        total_records_50_below = 11
+        response = self.operation.final_50_below()
+        result = len(response)
+        self.assertEqual(result, total_records_50_below)
+
+
     def tearDown(self):
         operation = SqlDb()
         self.close = operation.close_connection()
