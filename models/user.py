@@ -64,3 +64,16 @@ class User:
         self.cursor.execute(db_query)
         db_response = self.cursor.fetchone()
         return db_response
+
+    def create(self, *args):
+        print('User table before creating record')
+        self.display_table_content()
+
+        print('Table after creating record:')
+        db_insert = f'INSERT INTO users (id, first_name, last_name, created_at, updated_at) VALUES {args}'
+        self.cursor.execute(db_insert)
+        self.connection.commit()
+        count = self.cursor.rowcount
+
+        self.display_table_content()
+        print(count, "Record created successfully in users table")

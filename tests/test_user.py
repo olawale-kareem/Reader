@@ -46,6 +46,14 @@ class TestUser(unittest.TestCase):
         response = self.user.get(id)
         self.assertIsInstance(response, tuple)
 
+    def test_create(self):
+        total_record = 10
+        self.user.create(15, 'Charissa', 'Crighton', '2020/8/13', '2021/2/14')
+        self.connect.commit()
+        response = self.user.display_table_content()
+        result = len(response)
+        self.assertEqual(result, total_record + 1)
+
 
 if __name__ == '__main__':
     unittest.main()
