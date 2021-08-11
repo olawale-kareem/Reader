@@ -27,6 +27,16 @@ class TestUser(unittest.TestCase):
         result = len(response)
         self.assertEqual(result, total_records)
 
+    def test_read_by_SSN(self):
+        conn, cur = self.operation.connection()
+        SSN = 10
+        response = self.operation.read_records_by_SSN(SSN)
+        sql_read_query = f"SELECT * FROM grades WHERE SSN = '{SSN}'"
+        cur.execute(sql_read_query)
+        records = cur.fetchone()
+        self.assertEqual(response, records)
+
+
 
 
 
