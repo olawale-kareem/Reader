@@ -36,7 +36,9 @@ class TestUser(unittest.TestCase):
         records = cur.fetchone()
         self.assertEqual(response, records)
 
-
+    def test_update_records(self):
+        response = self.operation.update_record('632-79-9939', '632-79-9939', 46.0, 20.0, 30.0, 60.0, 70.0, 'A+')
+        self.assertEqual(response, "Record updated successfully in users table")
 
 
 
