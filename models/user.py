@@ -90,3 +90,38 @@ class User:
         print(self.get(id))
         print(count, "Record updated successfully in users table")
 
+    def delete(self, id):
+        print('User table before deleting record')
+        self.display_table_content()
+
+        print('Table after deleting record:')
+        delete_query = f'DELETE FROM users WHERE id = {id}'
+        self.cursor.execute(delete_query)
+        self.connection.commit()
+        count = self.cursor.rowcount
+
+        self.display_table_content()
+        print(count, "Record deleted successfully in users table")
+
+    def close_db_connections(self):
+        if self.connection:
+            self.cursor.close()
+            self.connection.close()
+            print('PostgreSQL connection is closed')
+
+if __name__ == '__main__':
+    try:
+        user = User()
+        print(user.load_schema_file())
+        print(user.load_seeder_file())
+    except Exception:
+        print("Sorry! we couldn't connect to the db, load schema and seed the table for operations")
+    else:
+        user.display_table_content()
+        # user.all()
+        # print(user.get(10))
+        # user.create(11, 'Charissa', 'Crighton', '2020/8/13', '2021/2/14')
+        # user.update(1,1,'Charissa', 'Crighton', '2020/8/13', '2021/2/14')
+        # user.delete(10)
+    finally:
+        user.close_db_connections()
