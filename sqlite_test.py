@@ -40,7 +40,11 @@ class TestUser(unittest.TestCase):
         response = self.operation.update_record('632-79-9939', '632-79-9939', 46.0, 20.0, 30.0, 60.0, 70.0, 'A+')
         self.assertEqual(response, "Record updated successfully in users table")
 
-
+    def test_final_50_and_above(self):
+        total_records_50_and_above = 5
+        response = self.operation.final_50_and_above()
+        result = len(response)
+        self.assertEqual(result, total_records_50_and_above)
 
     def tearDown(self):
         operation = SqlDb()
