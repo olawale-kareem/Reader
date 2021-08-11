@@ -58,3 +58,9 @@ class User:
         for row in db_response:
             print(row, '\n')
         return db_response
+
+    def get(self, user_id):
+        db_query = f'SELECT * FROM users WHERE id = {user_id}'
+        self.cursor.execute(db_query)
+        db_response = self.cursor.fetchone()
+        return db_response

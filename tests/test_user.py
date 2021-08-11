@@ -41,6 +41,10 @@ class TestUser(unittest.TestCase):
         result = len(response)
         self.assertEqual(result, 10)
 
+    def test_get(self):
+        id = 10
+        response = self.user.get(id)
+        self.assertIsInstance(response, tuple)
 
 
 if __name__ == '__main__':
