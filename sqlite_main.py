@@ -53,14 +53,16 @@ class SqlDb:
         print('Record Successfully Created')
         return 'Record Successfully Created'
 
-    def create_record(self, *args):
+    def read_all_records(self):
         conn, cur = self.connection()
-        sql_table_header, _ = self.csv_separator()
-        sql_create_query = f'INSERT INTO grades ({sql_table_header}) VALUES {args}'
-        cur.execute(sql_create_query)
-        conn.commit()
-        print('Record Successfully Created')
-        return 'Record Successfully Created'
+        sql_read_query = 'SELECT * FROM grades'
+        cur.execute(sql_read_query)
+        records = cur.fetchall()
+        print('Students records: ')
+        for record in records:
+            print(record)
+        return records
+
 
 
 
