@@ -1,4 +1,3 @@
 
-
-class Book:
+class Books:
     pass
