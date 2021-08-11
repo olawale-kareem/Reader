@@ -79,3 +79,5 @@ class Book:
 
         self.display_table_content()
         print(count, "Record created successfully in books table")
+
+

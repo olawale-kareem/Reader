@@ -53,6 +53,14 @@ class TestBooks(unittest.TestCase):
         result = len(response)
         self.assertEqual(result, total_record + 1)
 
+    def test_update(self):
+        id = 6
+        response_1 = self.book.get(id)
+        self.book.update(6, 6, 'Purpose', 500, '2019-06-14', '2021-01-28')
+        response_2 = self.book.get(id)
+        self.assertEqual(len(response_1), len(response_2))
+        self.assertIsInstance(response_1, tuple)
+        self.assertIsInstance(response_2, tuple)
 
     def tearDown(self):
         user = Book()
