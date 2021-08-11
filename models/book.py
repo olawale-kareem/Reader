@@ -59,3 +59,10 @@ class Book:
         for row in db_response:
             print(row, '\n')
         return db_response
+
+    def get(self, book_id):
+        db_query = f'SELECT * FROM users WHERE id = {book_id}'
+        self.cursor.execute(db_query)
+        db_response = self.cursor.fetchone()
+        print(db_response)
+        return db_response
