@@ -79,3 +79,14 @@ class Book:
 
         self.display_table_content()
         print(count, "Record created successfully in books table")
+
+    def update(self, id, *args):
+        print('Table before updating record')
+        print(self.get(id))
+        print('Table after updating record')
+        db_insert = f'UPDATE books SET (id, name, pages, created_at, updated_at) = {args} WHERE id = {id}'
+        self.cursor.execute(db_insert)
+        self.connection.commit()
+        count = self.cursor.rowcount
+        print(self.get(id))
+        print(count, "Record updated successfully in users table")
