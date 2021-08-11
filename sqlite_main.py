@@ -52,3 +52,6 @@ class SqlDb:
         conn.commit()
         print('Record Successfully Created')
         return 'Record Successfully Created'
+
+
+
