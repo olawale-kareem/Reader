@@ -81,6 +81,15 @@ class SqlDb:
         print("Record updated successfully in users table")
         return "Record updated successfully in users table"
 
+    def final_50_and_above(self):
+        conn, cur = self.connection()
+        sql_read_query = f"SELECT * FROM grades WHERE Final >= 50"
+        cur.execute(sql_read_query)
+        records = cur.fetchall()
+        print(f'Student records 50 and above:')
+        for record in records:
+            print(record)
+        return records
 
 
 
