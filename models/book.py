@@ -90,3 +90,39 @@ class Book:
         count = self.cursor.rowcount
         print(self.get(id))
         print(count, "Record updated successfully in users table")
+
+    def destroy(self, id):
+        print('Books table before deleting record')
+        self.display_table_content()
+
+        print('Table after deleting record:')
+        delete_query = f'DELETE FROM books WHERE id = {id}'
+        self.cursor.execute(delete_query)
+        self.connection.commit()
+        count = self.cursor.rowcount
+
+        self.display_table_content()
+        print(count, "Record deleted successfully in books table")
+
+    def close_db_connections(self):
+        if self.connection:
+            self.cursor.close()
+            self.connection.close()
+            print('PostgreSQL connection is closed')
+
+if __name__ == '__main__':
+    try:
+        book = Book()
+        print(book.load_schema_file())
+        print(book.load_seeder_file())
+    except Exception as err:
+        print("Sorry! we couldn't connect to the db, load schema and seed the table for operations", err)
+    else:
+        book.display_table_content()
+        # book.all()
+        # book.get(10)
+        # book.create(16, 3, 'Shuffletag', 638, '2021/4/1', '2021/7/27')
+        # book.update(1 , 1, 'Purpose', 500, '2019-06-14', '2021-01-28')
+        # book.destroy(10)
+    finally:
+        book.close_db_connections()
