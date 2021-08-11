@@ -38,7 +38,12 @@ class TestBooks(unittest.TestCase):
         result = len(response)
         self.assertEqual(result, 10)
 
-
+    def test_get(self):
+        id = 10
+        response = self.book.get(id)
+        result = len(response)
+        self.assertEqual(result, 7)
+        self.assertIsInstance(response, tuple)
 
 
     def tearDown(self):
