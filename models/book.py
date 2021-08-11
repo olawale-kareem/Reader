@@ -66,3 +66,16 @@ class Book:
         db_response = self.cursor.fetchone()
         print(db_response)
         return db_response
+
+    def create(self, *args):
+        print('Book table before creating record')
+        self.display_table_content()
+
+        print('Table after creating record:')
+        db_insert = f'INSERT INTO books (id, user_id, name, pages, created_at, updated_at) VALUES {args}'
+        self.cursor.execute(db_insert)
+        self.connection.commit()
+        count = self.cursor.rowcount
+
+        self.display_table_content()
+        print(count, "Record created successfully in books table")

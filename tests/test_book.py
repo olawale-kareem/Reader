@@ -45,6 +45,14 @@ class TestBooks(unittest.TestCase):
         self.assertEqual(result, 7)
         self.assertIsInstance(response, tuple)
 
+    def test_create(self):
+        total_record = 10
+        self.book.create(64, 3, 'Glad', 500, '2020-06-28', '2021-06-28')
+        self.connect.commit()
+        response = self.book.display_table_content()
+        result = len(response)
+        self.assertEqual(result, total_record + 1)
+
 
     def tearDown(self):
         user = Book()
