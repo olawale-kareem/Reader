@@ -63,6 +63,15 @@ class SqlDb:
             print(record)
         return records
 
+    def read_records_by_SSN(self, SSN):
+        conn, cur = self.connection()
+        sql_read_query = f"SELECT * FROM grades WHERE SSN = '{SSN}'"
+        cur.execute(sql_read_query)
+        records = cur.fetchone()
+        print(f'Student record: {SSN}')
+        print(records)
+        return records
+
 
 
 
