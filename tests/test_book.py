@@ -62,6 +62,15 @@ class TestBooks(unittest.TestCase):
         self.assertIsInstance(response_1, tuple)
         self.assertIsInstance(response_2, tuple)
 
+    def test_destroy(self):
+        total_record = 10
+        id = 10
+        self.book.destroy(id)
+        self.connect.commit()
+        response = self.book.display_table_content()
+        result = len(response)
+        self.assertEqual(result, total_record - 1)
+
     def tearDown(self):
         user = Book()
         self.close = user.close_db_connections()
