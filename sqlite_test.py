@@ -52,6 +52,13 @@ class TestUser(unittest.TestCase):
         result = len(response)
         self.assertEqual(result, total_records_50_below)
 
+    def test_delete_record(self):
+        SSN = "632-79-9439"
+        total_records = 16
+        self.operation.delete_record(SSN)
+        response = self.operation.read_all_records()
+        result = len(response)
+        self.assertEqual(total_records, result + 1)
 
     def tearDown(self):
         operation = SqlDb()
