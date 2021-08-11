@@ -53,5 +53,14 @@ class SqlDb:
         print('Record Successfully Created')
         return 'Record Successfully Created'
 
+    def create_record(self, *args):
+        conn, cur = self.connection()
+        sql_table_header, _ = self.csv_separator()
+        sql_create_query = f'INSERT INTO grades ({sql_table_header}) VALUES {args}'
+        cur.execute(sql_create_query)
+        conn.commit()
+        print('Record Successfully Created')
+        return 'Record Successfully Created'
+
 
 
