@@ -6,9 +6,8 @@ class User:
     def __init__(self):
         self.connection = self.connect_db()
         self.cursor = self.connect_db().cursor()
-        self.schema_file = '/Users/mac/decagon_python_class/week6/schema.sql'
-        self.seeder_file = '/Users/mac/decagon_python_class/week6/seeder.sql'
-
+        self.schema_file = '/Users/mac/week-6-assignment-olawale-kareem/schema.sql'
+        self.seeder_file = '/Users/mac/week-6-assignment-olawale-kareem/seeder.sql'
 
     def connect_db(self):
         try:
@@ -117,10 +116,10 @@ if __name__ == '__main__':
     except Exception:
         print("Sorry! we couldn't connect to the db, load schema and seed the table for operations")
     else:
-        user.display_table_content()
+        # user.display_table_content()
         # user.all()
         # print(user.get(10))
-        # user.create(11, 'Charissa', 'Crighton', '2020/8/13', '2021/2/14')
+        user.create(11, 'Charissa', 'Crighton', '2020/8/13', '2021/2/14')
         # user.update(1,1,'Charissa', 'Crighton', '2020/8/13', '2021/2/14')
         # user.delete(10)
     finally:

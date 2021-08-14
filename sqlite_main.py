@@ -122,16 +122,16 @@ class SqlDb:
 if __name__ == '__main__':
     try:
         sql_operation = SqlDb()
-        sql_operation.test_connect()
+        # sql_operation.test_connect()
         # sql_operation.drop_db()
-        # sql_operation.load_csv()
-        # sql_operation.read_all_records()
+        sql_operation.load_csv()
+        sql_operation.read_all_records()
         # sql_operation.read_records_by_SSN('123-45-6789')
         # sql_operation.create_record('Buff', 'Bif', '632-79-9939', 46.0, 20.0, 30.0, 40.0, 50.0, 'B+')
         # sql_operation.update_record('632-79-9939', '632-79-9939', 46.0, 20.0, 30.0, 60.0, 70.0, 'A+')
         # sql_operation.delete_record('632-79-9439')
-        sql_operation.final_50_and_above()
-        sql_operation.final_50_below()
+        # sql_operation.final_50_and_above()
+        # sql_operation.final_50_below()
     except Exception as err:
         print("Error while connecting to sqlite", err)
     finally:

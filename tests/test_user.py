@@ -3,15 +3,12 @@ import psycopg2
 from models.user import User
 
 
-
 class TestUser(unittest.TestCase):
-
 
     def setUp(self):
         self.user = User()
         self.connect = User.connect_db(self)
         self.cursor = self.connect.cursor()
-
 
     def test_connect_db(self):
         response = self.user.connect_db()
@@ -46,9 +43,9 @@ class TestUser(unittest.TestCase):
         response = self.user.get(id)
         self.assertIsInstance(response, tuple)
 
-    def test_create(self):
+    def test_create(self,):
         total_record = 10
-        self.user.create(15, 'Charissa', 'Crighton', '2020/8/13', '2021/2/14')
+        self.user.create(11, 'Charissa', 'Crighton', '2020/8/13', '2021/2/14')
         self.connect.commit()
         response = self.user.display_table_content()
         result = len(response)
@@ -57,7 +54,7 @@ class TestUser(unittest.TestCase):
     def test_update(self):
         id = 6
         response_1 = self.user.get(id)
-        self.user.update(6, 'Charissa', 'Crighton', '2020/8/13', '2021/2/14')
+        self.user.update(6, 6, 'Charissa', 'Crighton', '2020/8/13', '2021/2/14')
         response_2 = self.user.get(id)
         self.assertEqual(len(response_1), len(response_2))
         self.assertIsInstance(response_1, tuple)
@@ -74,6 +71,7 @@ class TestUser(unittest.TestCase):
     def tearDown(self):
         user = User()
         self.close = user.close_db_connections()
+
 
 if __name__ == '__main__':
     unittest.main()

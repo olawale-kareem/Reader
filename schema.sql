@@ -1,6 +1,6 @@
-
 DROP TABLE IF EXISTS books;
 DROP TABLE IF EXISTS users;
+
 
 CREATE TABLE users (
 	id INT  NOT NULL PRIMARY KEY,
@@ -14,12 +14,14 @@ CREATE TABLE users (
 
 CREATE TABLE books (
 	id INT NOT NULL PRIMARY KEY,
-	user_id INT REFERENCES users (id) ON DELETE CASCADE,
+	user_id BIGINT NOT NULL ,
 	name VARCHAR(50) NOT NULL,
 	pages INT NOT NULL,
 	created_at DATE NOT NULL,
-	updated_at DATE NOT NULL
+	updated_at DATE NOT NULL,
+	FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
+
 
 
 

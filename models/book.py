@@ -1,14 +1,12 @@
 import psycopg2
 from psycopg2 import DatabaseError as Error
 
-
 class Book:
     def __init__(self):
         self.connection = self.connect_db()
         self.cursor = self.connect_db().cursor()
-        self.schema_file = '/Users/mac/decagon_python_class/week6/schema.sql'
-        self.seeder_file = '/Users/mac/decagon_python_class/week6/seeder.sql'
-
+        self.schema_file = '/Users/mac/week-6-assignment-olawale-kareem/schema.sql'
+        self.seeder_file = '/Users/mac/week-6-assignment-olawale-kareem/seeder.sql'
 
     def connect_db(self):
         try:
@@ -52,8 +50,8 @@ class Book:
             print(row, '\n')
         return db_response
 
-    def all(self):
-        db_query = f'SELECT name FROM books'
+    def all(self, id):
+        db_query = f'''SELECT * FROM books WHERE user_id = {id};'''
         self.cursor.execute(db_query)
         db_response = self.cursor.fetchall()
         for row in db_response:
@@ -61,7 +59,7 @@ class Book:
         return db_response
 
     def get(self, book_id):
-        db_query = f'SELECT * FROM users WHERE id = {book_id}'
+        db_query = f'SELECT * FROM books WHERE id = {book_id}'
         self.cursor.execute(db_query)
         db_response = self.cursor.fetchone()
         print(db_response)
@@ -110,6 +108,9 @@ class Book:
             self.connection.close()
             print('PostgreSQL connection is closed')
 
+
+
+
 if __name__ == '__main__':
     try:
         book = Book()
@@ -119,10 +120,11 @@ if __name__ == '__main__':
         print("Sorry! we couldn't connect to the db, load schema and seed the table for operations", err)
     else:
         book.display_table_content()
-        # book.all()
+        # book.all(6)
         # book.get(10)
         # book.create(16, 3, 'Shuffletag', 638, '2021/4/1', '2021/7/27')
         # book.update(1 , 1, 'Purpose', 500, '2019-06-14', '2021-01-28')
         # book.destroy(10)
     finally:
         book.close_db_connections()
+
